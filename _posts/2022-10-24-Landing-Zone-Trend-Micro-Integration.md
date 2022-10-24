@@ -21,6 +21,18 @@ Trend Micro Cloud One is available on AWS Marketplace with flexible and easy pro
 - File Storage Security
 - Open Source Security (snyk)
 
+## Workload Security - What is it? ##
+
+Workload Security consists of the following set of components that work together to provide protection:
+
+- Workload Security console, the centralised web-based management console that administrators use to configure security policy and deploy protection to the enforcement components, the agent.
+
+- The agent is a security agent deployed directly on a computer which provides Application Control, Anti-Malware, Web Reputation service, Firewall, Intrusion Prevention, Integrity Monitoring, and Log Inspection protection to computers on which it is installed.
+
+- The agent contains a Relay module. A relay-enabled agent distributes software and security updates throughout your network of Workload Security components.
+
+- The notifier is an application that communicates information on the local computer about security status and events, and, in the case of relay-enabled agents, also provides information about the security updates being distributed from the local machine.
+
 
 ## How to Integrate Trend Micro Cloud One Workload Security with AWS Control Tower ##
 
