@@ -5,7 +5,7 @@ title: AWS Landing Zone - Root Account Usage Alerts
 
 ## Introduction ##
 
-In the past couple of posts we have discussed AWS Landing Zones. Over the next few posts I'm going to discuss how can leverage various services in the Shared Services account. The Shared Services account is where all the services that are shared across our enterprise should be located. In this post I will step you through how to leverage CloudTrail, CloudWatch Logs and SNS to alert if somebody logs into any of your AWS Organization leveraging Root User credentials.
+In the past couple of posts we have discussed AWS Landing Zones. Over the next few posts I'm going to discuss how can leverage various services across our AWS Organization to perform certain functions. One of the first things on my checklist is security posture and securing the root user credentials. In this post I will step you through how to leverage CloudTrail, CloudWatch Logs and SNS to alert if somebody logs into any of your AWS accounts leveraging Root User credentials. You only have to enable this alarm in one place and it is automatically enabled for all existing and future AWS accounts assuming they are contained within AWS Organization and  AWS Control Tower.
 
 
 ## AWS CloudTrail ##
@@ -28,7 +28,7 @@ Amazon Simple Notification Service (Amazon SNS) is a managed service that provid
 
 AWS IAM best practices recommend using IAM users or roles instead of root credentials. Unauthorised usage of your root account can be very dangerous as it has full access to everything. In this section, I will show you how to use CloudTrail, CloudWatch Logs and Amazon Simple Notification Services (SNS) to detect when root access is been used, so you can take the necessary remediations if necessary.
 
-If you followed the steps in the previous posts or have enabled Control Tower then CloudTrail should be writing your CloudTrail events to CloudWatch Logs in the home region of your AWS Management Account.
+If you followed the steps in the previous posts or have enabled Control Tower then CloudTrail will be making all your account's CloudTrail events available to CloudWatch Logs in the home region of your AWS Management Account.
 
 If you go to CloudTrail Dashboard you should see a trail called *aws-controltower-BaselineCloudTrail* and it should have a status of *Logging*.
 
@@ -49,7 +49,11 @@ Now if you go to CloudWatch Logs in your Control Tower Home Region you should se
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage3.png)
 
 4. Copy and paste into the Filter pattern box this text
-  > { $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }
+
+```
+{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }
+
+```
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage4.png)
 
@@ -101,13 +105,13 @@ Now if you go to CloudWatch Logs in your Control Tower Home Region you should se
 
 8. Finally click Create alarm
 
-9. Don't forget to go into your email to confirm subscription to the SNS topic.
+9. Don't forget to go into your email to confirm subscription to the SNS topic
 
 ## Test the Alarm ##
 
-1. Log out of the console and log in as a root user
+1. Log out of the console and log in as a root user from any of your AWS accounts
 
-2. You should receive an email alert for root user usage. This alert will also be reflected in your CloudWatch alarms.
+2. You should receive an email alert for root user usage. This alert will also be reflected in your CloudWatch alarms
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage13.png)
 
