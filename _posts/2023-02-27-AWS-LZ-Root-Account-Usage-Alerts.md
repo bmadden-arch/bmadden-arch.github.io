@@ -40,75 +40,75 @@ Now if you go to CloudWatch Logs in your Control Tower Home Region you should se
 
 ## Setup a Metric Filter in CloudWatch ##
 
-1. Open the CloudWatch console by typing CloudWatch in the top navigation search bar
+1. Open the CloudWatch console by typing CloudWatch in the top navigation search bar.
 
-2. Click Log groups on the left navigation pane
+2. Click Log groups on the left navigation pane.
 
-3. Select the checkbox next to the *aws-controltower/CloudTrailLogs* group. Click on Actions and select Create metric filter
+3. Select the checkbox next to the *aws-controltower/CloudTrailLogs* group. Click on Actions and select Create metric filter.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage3.png)
 
-4. Copy and paste into the Filter pattern box this text
+4. Copy and paste into the Filter pattern box this text.
 
 **_{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }_**
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage4.png)
 
-5. You can ignore the test pattern and click on Next
+5. You can ignore the test pattern and click on Next.
 
-6. Add a name for the Filter in the Name Box
+6. Add a name for the Filter in the Name Box.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage5.png)
 
-7. Add a name under *Metric Namespace*
+7. Add a name under *Metric Namespace*.
 
-8. Add a name in the *Metric Name field*
+8. Add a name in the *Metric Name field*.
 
-9. For the *Metric value field*, enter *1*
+9. For the *Metric value field*, enter *1*.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage6.png)
 
-10. You can only proceed to Next when you have filled in the above fields
+10. You can only proceed to Next when you have filled in the above required fields.
 
-11. Click on Create metric filter
+11. Click on Create metric filter.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage7.png)
 
 ## Create the Alarm ##
 
-1. Find the metric you just created under Metric Filters, put a check in the box beside the filter name and Click on Create alarm
+1. Find the metric you just created under Metric Filters, put a check in the box beside the filter name and Click on Create alarm.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage8.png)
 
-2. On the Metric screen accept the defaults
+2. On the Metric screen accept the defaults.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage9.png)
 
-3. For the conditions set it to *Greater/Equal* and the threshold value as *1*
+3. For the conditions set it to *Greater/Equal* and the threshold value as *1*.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage10.png)
 
-4. Click next, under the Select an SNS topic, select Create a new topic
+4. Click next, under the Select an SNS topic, select Create a new topic.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage11.png)
 
-5. Give the topic a name, add the emails of the relevant people who need to be informed
+5. Give the topic a name, add the emails of the relevant people who need to be informed.
 
-6. Click Create Topic and then click next
+6. Click Create Topic and then click next.
 
-7. Add your alarm name and click next
+7. Add your alarm name and click next.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage12.png)
 
-8. Finally click Create alarm
+8. Finally click Create alarm.
 
-9. Don't forget to go into your email to confirm subscription to the SNS topic
+9. Don't forget to go into your email to confirm subscription to the SNS topic.
 
 ## Test the Alarm ##
 
-1. Log out of the console and log in as a root user from any of your AWS accounts
+1. Log out of the console and log in as a root user from any of your AWS accounts.
 
-2. You should receive an email alert for root user usage. This alert will also be reflected in your CloudWatch alarms
+2. You should receive an email alert for root user usage. This alert will also be reflected in your CloudWatch alarms.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage13.png)
 
