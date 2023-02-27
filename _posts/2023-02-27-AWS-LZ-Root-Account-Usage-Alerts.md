@@ -50,10 +50,7 @@ Now if you go to CloudWatch Logs in your Control Tower Home Region you should se
 
 4. Copy and paste into the Filter pattern box this text
 
-```
-{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }
-
-```
+**_{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }_**
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Secure-LZ-Root-Account-Alarm/BlogImage4.png)
 
