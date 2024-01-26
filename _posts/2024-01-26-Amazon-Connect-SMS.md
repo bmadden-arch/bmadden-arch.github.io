@@ -117,7 +117,8 @@ Once AWS have procured a number for you then it will appear in the Amazon Pinpoi
 
 *  Choose Import Phone number.
 
-![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImag10.png)
+![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage10.png)
+
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage11.png)
 
