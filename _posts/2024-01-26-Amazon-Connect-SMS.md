@@ -57,19 +57,19 @@ With Amazon Pinpoint SMS, senders can:
 
 You will use Amazon Pinpoint SMS to obtain an SMS-enabled phone number and enable two-way SMS on the number. Finally we will import it into Amazon Connect.
 
-1. Open the Amazon Pinpoint console at [https://console.aws.amazon.com/sms-voice/] in the Frankfurt (EU-Central-1) region. You must claim Pinpoint number in the same region as your Amazon Connect instance.
+* Open the Amazon Pinpoint console at [https://console.aws.amazon.com/sms-voice/] in the Frankfurt (EU-Central-1) region. You must claim Pinpoint number in the same region as your Amazon Connect instance.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage1.png)
 
-2. In the navigation pane, under Configurations, choose Phone numbers and then Request originator.
+* In the navigation pane, under Configurations, choose Phone numbers and then Request originator.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage2.png)
 
-3. On the Select country page you must choose the Message destination country from the drop down that messages will be sent to. Choose Next. We going to select Ireland for this exercise
+* On the Select country page you must choose the Message destination country from the drop down that messages will be sent to. Choose Next. We going to select Ireland for this exercise
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage3.png)
 
-4. On the Messaging use case section, enter the following and then click Next.
+* On the Messaging use case section, enter the following and then click Next.
 
 - Under Number capabilities choose SMS.
 
@@ -81,55 +81,55 @@ You will use Amazon Pinpoint SMS to obtain an SMS-enabled phone number and enabl
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage4.png)
 
-5. Under Select originator type, choose Long Code and click Next. To request a long code you need to open a case with AWS Support. I'm not going to cover the opening of the Support Case. It took 10 days for AWS to receive an Irish mobile number to assign to me in Pinpoint.
+* Under Select originator type, choose Long Code and click Next. To request a long code you need to open a case with AWS Support. I'm not going to cover the opening of the Support Case. It took 10 days for AWS to receive an Irish mobile number to assign to me in Pinpoint.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage5.png)
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage6.png)
 
-6. Picking up from when AWS provided me with a Long Code.
+* Picking up from when AWS provided me with a Long Code.
 
 ## Setting Amazon Connect as Two-way SMS Destination ##
 
 Once AWS have procured a number for you then it will appear in the Amazon Pinpoint SMS console, for you to enable two-way SMS.
 
-1. You can either open the SMS console at [https://eu-central-1.console.aws.amazon.com/sms-voice/home?region=eu-central-1#/overview] or go to Amazon Pinpoint.Select Pinpoint SMS and then press Manage SMS.
+* You can either open the SMS console at [https://eu-central-1.console.aws.amazon.com/sms-voice/home?region=eu-central-1#/overview] or go to Amazon Pinpoint.Select Pinpoint SMS and then press Manage SMS.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage7.png)
 
-2. In the navigation pane, under Configurations, choose Phone numbers.
+* In the navigation pane, under Configurations, choose Phone numbers.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage8.png)
 
-3. On the Phone numbers page, click on the telephone number you wish to enable Two-way SMS for.
+* On the Phone numbers page, click on the telephone number you wish to enable Two-way SMS for.
 
-4. Now on the Two-way SMS table choose the Edit settings button.
+* Now on the Two-way SMS table choose the Edit settings button.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage9.png)
 
-5. For the Destination type choose Amazon Connect.
+* For the Destination type choose Amazon Connect.
 
-6. For Amazon Connect in the Two-way channel role choose existing IAM roles
+* For Amazon Connect in the Two-way channel role choose existing IAM roles
 
-7. Choose Save changes
+* Choose Save changes
 
-8. The Import Phone Number to Amazon Connect window opens. You need to select which of your Amazon Connect instances to send the incoming messages to.
+* The Import Phone Number to Amazon Connect window opens. You need to select which of your Amazon Connect instances to send the incoming messages to.
 
-9. Choose Import Phone number.
+*  Choose Import Phone number.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImag10.png)
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage11.png)
 
-10. After you imported the number in the steps above, the number will be visible in Amazon Connect under Channels and Phone numbers.
+* After you imported the number in the steps above, the number will be visible in Amazon Connect under Channels and Phone numbers.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage12.png)
 
 ## Amazon Connect SMS Call Flow ##
 
-1. In my Amazon Connect I have created a new simple Call flow called SMS.
+* In my Amazon Connect I have created a new simple Call flow called SMS.
 
-2. You need to add a Check contact attributes block to the flow.
+* You need to add a Check contact attributes block to the flow.
 
 - Namespace value is Segment attributes
 - Key has a value of subscriptionType
@@ -138,11 +138,11 @@ Once AWS have procured a number for you then it will appear in the Amazon Pinpoi
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage13.png)
 
-3. Also included in my flow is Set Working Queue and Transfer to flow. Please see my earlier blog posts if you need assistance on creating a call flow.
+* Also included in my flow is Set Working Queue and Transfer to flow. Please see my earlier blog posts if you need assistance on creating a call flow.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage14.png)
 
-4. Final step is to associate the phone number with the call flow. In Amazon Connect go to Channels, Phone numbers and associate the number to the call flow created in Step 1.
+* Final step is to associate the phone number with the call flow. In Amazon Connect go to Channels, Phone numbers and associate the number to the call flow created in Step 1.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage15.png)
 
@@ -150,15 +150,15 @@ Once AWS have procured a number for you then it will appear in the Amazon Pinpoi
 
 We are now ready to test two-way SMS. For this we will need the Amazon Connect Agent Workspace or Contact Control Panel (CCP) and a mobile phone.
 
-1. In the Agent Workspace set yourself to available
+* In the Agent Workspace set yourself to available
 
-2. Using a mobile device, send a SMS to the phone number created in Pinpoint.
+* Using a mobile device, send a SMS to the phone number created in Pinpoint.
 
-3. The Agent Workspace will ring with a SMS chat.
+* The Agent Workspace will ring with a SMS chat.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage16.png)
 
-4. The agent and customer communicate as normal over SMS.
+* The agent and customer communicate as normal over SMS.
 
 **N.B**
 Please note to release the phone number claimed if you no longer need it as there is a monthly charge of **$10**.
