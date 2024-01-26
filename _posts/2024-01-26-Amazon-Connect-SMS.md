@@ -57,7 +57,7 @@ With Amazon Pinpoint SMS, senders can:
 
 You will use Amazon Pinpoint SMS to obtain an SMS-enabled phone number and enable two-way SMS on the number. Finally we will import it into Amazon Connect.
 
-* Open the Amazon Pinpoint console at [https://console.aws.amazon.com/sms-voice/] in the Frankfurt (EU-Central-1) region. You must claim Pinpoint number in the same region as your Amazon Connect instance.
+* Open the Amazon Pinpoint console at <https://console.aws.amazon.com/sms-voice/> in the Frankfurt (EU-Central-1) region. You must claim Pinpoint number in the same region as your Amazon Connect instance.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage1.png)
 
@@ -93,7 +93,7 @@ You will use Amazon Pinpoint SMS to obtain an SMS-enabled phone number and enabl
 
 Once AWS have procured a number for you then it will appear in the Amazon Pinpoint SMS console, for you to enable two-way SMS.
 
-* You can either open the SMS console at [https://eu-central-1.console.aws.amazon.com/sms-voice/home?region=eu-central-1#/overview] or go to Amazon Pinpoint.Select Pinpoint SMS and then press Manage SMS.
+* You can either open the SMS console at <https://eu-central-1.console.aws.amazon.com/sms-voice/home?region=eu-central-1#/overview> or go to Amazon Pinpoint.Select Pinpoint SMS and then press Manage SMS.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage7.png)
 
