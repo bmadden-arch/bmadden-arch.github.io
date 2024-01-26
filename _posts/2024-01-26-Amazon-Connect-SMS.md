@@ -142,7 +142,7 @@ Once AWS have procured a number for you then it will appear in the Amazon Pinpoi
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage14.png)
 
-* Final step is to associate the phone number with the call flow. In Amazon Connect go to Channels, Phone numbers and associate the number to the call flow created in Step 1.
+* Final step is to associate the phone number with the call flow. In Amazon Connect go to Channels, Phone numbers and associate the number to the call flow created above.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-Connect-SMS/BlogImage15.png)
 
