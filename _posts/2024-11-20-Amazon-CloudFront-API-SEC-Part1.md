@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Amazon CloudFront to protect Amazon API Gateway -Part 1
+title: Using Amazon CloudFront to protect Amazon API Gateway - Part 1
 ---
 
 ## Introduction ##
