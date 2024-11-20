@@ -23,100 +23,115 @@ Amazon CloudFront is a content delivery network (CDN) service that delivers data
 
 ## Amazon API Gateway ##
 
-Amazon API Gateway is a fully managed service that enables developers to create, publish, maintain, monitor, and secure APIs at any scale. It acts as a "front door" for applications to access data, business logic, or functionality from backend services, such as AWS Lambda, Amazon EC2, or other web services. API Gateway supports RESTful, HTTP, and WebSocket APIs, allowing for both synchronous and asynchronous communication with backend resources. It also includes built-in features for security, such as authentication and authorization, throttling, and request/response validation. With Amazon API Gateway, developers can deploy APIs quickly and scale automatically to handle large numbers of requests, improving both performance and reliability.
+Amazon API Gateway is a fully managed service that enables developers to create, publish, maintain, monitor, and secure APIs at any scale. It acts as a "front door" for applications to access data, business logic, or functionality from backend services, such as AWS Lambda, Amazon EC2, or other web services. API Gateway supports REST, HTTP, and WebSocket APIs, allowing for both synchronous and asynchronous communication with backend resources. It also includes built-in features for security, such as authentication and authorization, throttling, and request/response validation. With Amazon API Gateway, developers can deploy APIs quickly and scale automatically to handle large numbers of requests, improving both performance and reliability.
 
 **Benefits of Using Amazon API Gateway**
 - Scalability: Automatically scales to handle thousands of requests per second, supporting high-traffic applications.
 - Cost-Effectiveness: Uses a pay-as-you-go pricing model, charging only for the API calls made and data transferred.
 - Security: Supports integration with AWS IAM, Lambda authorizers, and Amazon Cognito for user authentication and authorization.
-- Flexible API Options: Supports RESTful APIs, HTTP APIs, and WebSocket APIs to suit different application needs.
+- Flexible API Options: Supports REST APIs, HTTP APIs, and WebSocket APIs to suit different application needs.
 - Simplified Monitoring: Integrates with Amazon CloudWatch for monitoring API metrics, logging, and troubleshooting.
 
-## Creating Amazon API Gateway ##
+# Creating Amazon API Gateway #
 
-# Setting Up a Regional Amazon API Gateway Endpoint with a Mock Method
+## Setting Up a Regional Amazon API Gateway Endpoint with a Mock Method
 
 Setting up a regional Amazon API Gateway endpoint with a mock integration is a useful way to test an API configuration without involving backend resources. This guide provides a step-by-step process for configuring a mock API for testing purposes only.
 
 ## Step 1: Access the API Gateway Console
-1. Log into the [AWS Management Console](https://aws.amazon.com/console/).
-2. In the search bar, type “API Gateway” and select **API Gateway**.
-3. In the API Gateway dashboard, click **Create API**.
+- Log into the [AWS Management Console](https://aws.amazon.com/console/).
+
+- In the search bar, type “API Gateway” and select **API Gateway**.
+
+- In the API Gateway dashboard, click **Create API**.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage1.png)
 
 ## Step 2: Create a Regional REST API
-1. Select **REST API** for the API type and select Build
 
-2. Choose **New API** 
+- Select **REST API** for the API type and select Build
 
-3. In the configuration section, fill in the following:
+- Choose **New API** 
+
+- In the configuration section, fill in the following:
    - **API name**: Provide a name, such as “RegionalMockAPI”.
    - **Description** (optional): Enter a description if desired.
    - **Endpoint Type**: Select **Regional** to limit the API to your chosen AWS region.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage2.png)
 
-4. Click **Create API** to create the API.
+- Click **Create API** to create the API.
 
 ## Step 3: Define a Resource
-1. Once the API is created, go to the **Resources** section (you may be directed there automatically).
 
-2. Select **Create Resource** to define a new resource for the API.
+- Once the API is created, go to the **Resources** section (you may be directed there automatically).
+
+- Select **Create Resource** to define a new resource for the API.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage3.png)
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage4.png)
 
-3. In the **New Child Resource** configuration page:
+- In the **New Child Resource** configuration page:
    - **Resource Name**: Enter a name, like "regionalmock”.
    - **Resource Path**: This will auto-populate based on your resource name.
    - **Enable API Gateway CORS**: Optionally select this if you intend to access the API from a browser client.
 
-4. Click **Create Resource** to complete this step.
+- Click **Create Resource** to complete this step.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage5.png)
 
 ## Step 4: Add a Mock Method
-1. Select your newly created resource (e.g., `/regionalmock`).
-2. In the **Actions** menu, select **Create Method**.
-3. Choose **GET** (or any HTTP method you want to test) from the dropdown and click the checkmark to confirm.
-4. In the **Setup** screen:
+
+- Select your newly created resource (e.g., `/regionalmock`).
+
+- In the **Actions** menu, select **Create Method**.
+
+- Choose **GET** (or any HTTP method you want to test) from the dropdown and click the checkmark to confirm.
+
+- In the **Setup** screen:
    - For **Integration type**, select **Mock**.
    - This integration type simulates a backend response without needing an actual backend.
 
-5. Click **Create method** to apply the settings.
+- Click **Create method** to apply the settings.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage6.png)
 
 ## Step 5: Configure the Method Response
-1. Expand the **Method Response** section. By default, there is usually a **200** response defined. If it’s not there, click **Add Response** and enter **200** as the response code.
-2. To define the structure of your mock response, click on **200** under Method Response.
+
+- Expand the **Method Response** section. By default, there is usually a **200** response defined. If it’s not there, click **Add Response** and enter **200** as the response code.
+
+- To define the structure of your mock response, click on **200** under Method Response.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage7.png)
 
-3. In the **Response Models** section, add a **Model** if desired, such as **application/json** to represent a JSON response format.
-4. If you don’t want to specify a model, you can skip this, but it helps with testing a structured response.
+- In the **Response Models** section, add a **Model** if desired, such as **application/json** to represent a JSON response format.
+
+- If you don’t want to specify a model, you can skip this, but it helps with testing a structured response.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage8.png)
 
 ## Step 6: Deploy the API
-1. On the right hand side of screen choose **Deploy API**.
+
+- On the right hand side of screen choose **Deploy API**.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage9.png)
 
-2. In the deployment configuration:
+- In the deployment configuration:
    - **Deployment stage**: Select **[New Stage]** and name it, such as “dev” or “test”.
    - Optionally add a **Description** to clarify the deployment purpose.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage10.png)
 
-3. Click **Deploy**.
+- Click **Deploy**.
 
 ## Step 8: Test the Mock API
-1. Once deployed, you’ll see the **Invoke URL** for your API stage. Copy this URL to test it in a browser or API testing tool (such as Postman).
-2. Append the resource path to the URL (e.g., `/test`) and make a **GET** request.
-3. You should see the mock response you configured earlier, which confirms that your regional API endpoint with a mock method is set up correctly.
+
+- Once deployed, you’ll see the **Invoke URL** for your API stage. Copy this URL to test it in a browser or API testing tool (such as Postman).
+
+- Append the resource path to the URL (e.g., `/test`) and make a **GET** request.
+
+- You should see the mock response you configured earlier, which confirms that your regional API endpoint with a mock method is set up correctly.
 
 This setup allows you to validate the configuration and behavior of your API without any actual backend integration. When ready, you can replace the mock method with a real backend integration, such as a Lambda function or an HTTP endpoint.
 
@@ -130,13 +145,17 @@ This guide explains how to set up an Amazon CloudFront distribution for users in
 - A regional **Amazon API Gateway** endpoint already set up. You will need the API’s **Invoke URL** as the origin for CloudFront.
 
 ## Step 1: Access the CloudFront Console
+
 1. Log in to the [AWS Management Console](https://aws.amazon.com/console/).
+
 2. In the search bar, type **CloudFront** and select **CloudFront** from the services list.
+
 3. In the **CloudFront** dashboard, click on **Create Distribution**.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage12.png)
 
 ## Step 2: Configure the CloudFront Distribution Settings
+
 1. In the **Origin Settings**:
    - **Origin Domain Name**: Enter the **Invoke URL** of your API Gateway (e.g., `https://your-api-id.execute-api.us-east-1.amazonaws.com`).
    - **Origin Path**: Leave this blank unless you need to specify a path in the API.
@@ -146,66 +165,76 @@ This guide explains how to set up an Amazon CloudFront distribution for users in
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage13.png)
 
-2. Scroll down to **Default Cache Behavior Settings**:
+- Scroll down to **Default Cache Behavior Settings**:
    - **Viewer Protocol Policy**: Choose **HTTPS only**.
    - **Allowed HTTP Methods**: Select **GET, HEAD** (and add **OPTIONS** if you need CORS for cross-origin requests).
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage14.png)
 
-3. **Cache Policy and Origin Request Policy**: Use the **CachingDisabled** policy and **AllViewerExceptHostHeader** policy.
+- **Cache Policy and Origin Request Policy**: Use the **CachingDisabled** policy and **AllViewerExceptHostHeader** policy.
 
-4. Web Application Firewall set to Do Not enable security protections. **N.B** For production workloads enable WAF.
+- Web Application Firewall set to Do Not enable security protections. **N.B** For production workloads enable WAF.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage15.png)
 
 ## Step 3: Configure Distribution Settings for North America and Europe Regions
+
 1. In the **Distribution Settings** section:
    - **Price Class**: Select **Use Only North America, and Europe** to limit the distribution to these geographic regions.
+
 2. **Logging**: Enable **Standard Logging** if you’d like to monitor requests to your distribution. You’ll need to select an S3 bucket to store the logs.
+
 3. **Alternate Domain Names (CNAMEs)**: Add custom domain names if desired, such as `api.example.com`. Ensure you’ve created the necessary DNS entries in Route 53 or another DNS provider.
+
 4. **SSL Certificate**: Select **Default CloudFront Certificate** if you’re using the CloudFront domain, or choose **Custom SSL Certificate** if using a custom domain name with HTTPS. (This requires an SSL certificate in ACM).
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage16.png)
 
-5. IPv6 set to on
-6. Add a Description if you want
-7. Click on Create distribution
+- IPv6 set to on
+
+- Add a Description if you want
+
+- Click on Create distribution
 
 ## Step 3: Restrict Access to UK and Ireland Only
 1. Once the Distribution has been created click on Security tab
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage17.png)
 
-2. Find **CloudFront Geographic Restrictions** and click the Edit button beside countries
+- Find **CloudFront Geographic Restrictions** and click the Edit button beside countries
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage18.png)
 
-3. Under **Restriction Type**, select **Allow List**.
+- Under **Restriction Type**, select **Allow List**.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage19.png)
 
-4. In the **Countries** dropdown list, choose **Ireland** and **United Kingdom**. Only requests from these countries will be allowed access.
+- In the **Countries** dropdown list, choose **Ireland** and **United Kingdom**. Only requests from these countries will be allowed access.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage20.png)
 
-5. Click on Save changes.
+- Click on Save changes.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage21.png)
 
 > **Note:** It can take a few minutes for CloudFront to deploy the distribution and make it available. You can monitor the status in the CloudFront console under **Distributions**.
 
 ## Step 6: Test the CloudFront Distribution
+
 1. Once the status changes to **Deployed**, copy the **Domain Name** for your CloudFront distribution (e.g., `d1234.cloudfront.net`).
+
 2. Open a browser or API testing tool (like Postman) and test the endpoint. Append the resource path if required (e.g., `/test` if your API Gateway has a `/test` resource).
+
 3. Verify that the API responses are successfully served for requests originating from the UK and Ireland. Requests from other locations should be denied with a 403 Forbidden error.
 
 ## Step 7: Monitor and Manage the Distribution
+
 1. In the CloudFront console, navigate to **Distributions** and select your distribution to view analytics and logs.
+
 2. Click on View metrics in the top right for detailed metrics and monitoring.
 
 ![_config.yml]({{ site.baseurl }}/images/blog/Amazon-CloudFront-API-SEC-Part1/BlogImage22.png)
 
-
 ## Conclusion ##
 
-In this blog we have created a Regional API Gateway REST Endpoint and a CloudFront Distribution that points to our API Gateway. As it currently stands the API Gateway can be accessed directly using the Invoke URL or the CloudFront Distribution URL. In part 2 of this blog I will add a custom header to CloudFront which I will then reference in my Resource policy. This will prevent access to API Gateway via the Invoke URL.
+In this blog we have created a Regional API Gateway REST Endpoint and a CloudFront Distribution that points to our API Gateway. As it currently stands the API Gateway can be accessed directly using the Invoke URL or the CloudFront Distribution URL. In part 2 of this blog we will expand on the above configuration by adding a custom header to CloudFront. This will be used within my API Gateway Resource policy. This will prevent access to API Gateway via the Invoke URL. Finally in part 3 will add the final layer of protection which is a Lambda authoriser.
