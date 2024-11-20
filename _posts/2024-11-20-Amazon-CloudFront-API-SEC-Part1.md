@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Amazon CloudFront - Amazon API Gateway Security Layers
+title: Using Amazon CloudFront to protect Amazon API Gateway -Part 1
 ---
 
 ## Introduction ##
