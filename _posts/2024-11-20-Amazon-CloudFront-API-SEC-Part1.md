@@ -237,4 +237,4 @@ This guide explains how to set up an Amazon CloudFront distribution for users in
 
 ## Conclusion ##
 
-In this blog we have created a Regional API Gateway REST Endpoint and a CloudFront Distribution that points to our API Gateway. As it currently stands the API Gateway can be accessed directly using the Invoke URL or the CloudFront Distribution URL. In part 2 of this blog we will expand on the above configuration by adding a custom header to CloudFront which I will then reference in my Resource policy. This will prevent access to API Gateway via the Invoke URL.
+In this blog we have created a Regional API Gateway REST Endpoint and a CloudFront Distribution that points to our API Gateway. As it currently stands the API Gateway can be accessed directly using the Invoke URL or the CloudFront Distribution URL. In part 2 of this blog we will expand on the above configuration by adding a custom header to CloudFront. This will be used within my API Gateway Resource policy. This will prevent access to API Gateway via the Invoke URL. Finally in part 3 will add the final layer of protection which is a Lambda authoriser.
