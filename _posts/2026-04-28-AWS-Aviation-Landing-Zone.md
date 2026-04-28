@@ -9,11 +9,10 @@ Aviation is one of the most operationally complex industries in the world. Syste
 
 When moving workloads to AWS, aviation organisations cannot simply lift-and-shift into a single account and call it a cloud strategy. The foundation matters enormously. A well-designed landing zone determines how scalable, secure, and auditable everything built on top of it will be — for years to come.
 
-This post walks through the architecture of an AWS Landing Zone we have deployed for a major aviation operator, built to support multi-account governance, centralised networking, identity federation, and strong compliance posture from day one. The architecture is available as a professional services engagement via the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-s7bklekkdkw3w).
+This post walks through the architecture of an AWS Landing Zone we have deployed for a leading aviation operator, built to support multi-account governance, centralised networking, identity federation, and strong compliance posture from day one. The architecture is available as a professional services engagement via the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-s7bklekkdkw3w).
 
 The architecture diagrams in this post have been created using [Eraser.io](https://www.eraser.io/).
 
----
 
 ## Why Aviation Needs a Purpose-Built Landing Zone ##
 
@@ -27,7 +26,6 @@ Generic landing zone guides cover the fundamentals well, but aviation introduces
 
 These constraints directly influence the account structure, networking design, and security controls described below.
 
----
 
 ## Account Structure and AWS Organisations ##
 
@@ -44,7 +42,6 @@ Accounts are grouped into **Organisational Units (OUs)** that reflect the operat
 
 ![_config.yml]({{ site.baseurl }}/images/blog/AWS-Aviation-Landing-Zone/Diagram1.png)
 
----
 
 ## Governance with AWS Control Tower ##
 
@@ -57,7 +54,6 @@ Accounts are grouped into **Organisational Units (OUs)** that reflect the operat
 
 For the aviation deployment, Control Tower guardrails were selected and tuned to align with the organisation's compliance requirements. Controls covering encryption enforcement, S3 public access blocking, and IAM password policy were enabled from the outset. Additional custom Config rules were layered on top via the Security Tooling Account to address aviation-specific requirements.
 
----
 
 ## Identity and Access Management ##
 
@@ -76,7 +72,6 @@ Permission sets are version-controlled and deployed through the Infrastructure a
 
 ![_config.yml]({{ site.baseurl }}/images/blog/AWS-Aviation-Landing-Zone/Diagram2.png)
 
----
 
 ## Centralised Networking ##
 
@@ -127,7 +122,6 @@ Global Accelerator sits in front of the Application Load Balancers in the Produc
 
 **Amazon Route 53 Resolver** provides centralised DNS across the multi-account environment. A centrally managed private hosted zone in the Shared Services Account is shared to workload accounts, enabling consistent internal DNS resolution. Route 53 Resolver rules forward on-premises domain queries to the corporate DNS servers, and inbound resolver endpoints allow on-premises systems to resolve AWS-hosted service endpoints.
 
----
 
 ## Security Architecture ##
 
@@ -149,7 +143,6 @@ The S3 buckets in the Log Archive Account have server-side encryption enforced u
 
 ![_config.yml]({{ site.baseurl }}/images/blog/AWS-Aviation-Landing-Zone/Diagram4.png)
 
----
 
 ## Encryption and Key Management ##
 
@@ -157,7 +150,6 @@ The S3 buckets in the Log Archive Account have server-side encryption enforced u
 
 **AWS Secrets Manager** is used for all application credentials, database passwords, and API keys. Secret rotation is enabled where the target service supports it, and access to secrets is granted via IAM resource-based policies that follow the principle of least privilege.
 
----
 
 ## Automation and Operations ##
 
@@ -187,7 +179,6 @@ Metrics from CloudWatch are forwarded to **Amazon Managed Service for Prometheus
 
 The combination of centralised observability, automated alerting, and Lambda-driven remediation has a direct impact on **Mean Time to Resolution (MTTR)**. Issues that previously required an engineer to manually triage across multiple accounts — correlating CloudTrail events, checking Config history, and cross-referencing network logs — are surfaced automatically in Security Hub or CloudWatch with the relevant context already aggregated. For operational incidents, this has reduced the triage phase from hours to minutes. For security findings, automated Lambda remediation handles a significant proportion of common issues — misconfigured security groups, public S3 access, unencrypted volumes — without any manual intervention at all, freeing engineering time for higher-value work.
 
----
 
 ## What This Foundation Enables ##
 
@@ -212,7 +203,6 @@ The automation and IaC approach has significantly reduced the ongoing engineerin
 
 AI-assisted development has compounded this further by reducing the time engineers spend on boilerplate and code review feedback cycles. Collectively, these automation gains translate to a material reduction in the engineering hours required per workload onboarding and per operational cycle — time that is reinvested into delivering business capability rather than maintaining infrastructure.
 
----
 
 ## Summary ##
 
