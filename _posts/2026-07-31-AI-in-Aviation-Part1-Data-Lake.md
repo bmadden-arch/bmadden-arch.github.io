@@ -128,7 +128,7 @@ This consumption layer is also where Part 3 and Part 4 of this series pick up: t
 
 ## Art of the Possible: SkyConnect ##
 
-To make this concrete, it's worth looking at what this pattern enables once it's built. **SkyConnect** is a demo Operational Command Centre we built at Amach on exactly this architecture, simulating a fictional airline running 18 aircraft across a four-route European network out of Dublin.
+To make this concrete, it's worth looking at what this pattern enables once it's built. **SkyConnect** is a demo Operational Command Centre I built using exactly this architecture, simulating a fictional airline running 18 aircraft across a four-route European network out of Dublin.
 
 The data path is a small, self-contained version of everything described above: an ACARS simulator publishes engine telemetry to a **Kinesis Data Stream**, which fans out through **Kinesis Firehose** into an S3 data lake (catalogued hourly by a **Glue Crawler** and queryable via **Athena**) and through a **Lambda stream processor** into **DynamoDB** for live fleet state — the same dual hot-path/durable-path pattern from Diagram 2 above, running end to end. Live ADS-B position data from FlightAware AeroAPI is layered on top for real aircraft tracking. The screenshots below are taken directly from a live, running instance of the demo — not mockups.
 
