@@ -40,8 +40,11 @@ Before building anything, the four backlog items get sorted through the Part 2 r
 | Backlog item | Tier | Why |
 |---|---|---|
 | AI chat bot — general OCC Q&A | **Tier 1** | Read-only questions against live dashboard data ("what's SK552's status," "summarise today's OTP"). Wrong or imprecise answers are inconvenient, not dangerous |
+
 | Bedrock Knowledge Base — maintenance advisory | **Tier 2** | Answers inform real engineering decisions about aircraft status and AD compliance. Requires grounding checks and a human engineer in the loop |
+
 | AgentCore — disruption / crew / welfare orchestration | **Tier 2** | The recurring example from Parts 1–3: recommends, a human decides |
+
 | Anything that would autonomously action a finding — opening an AMOS work order, grounding an aircraft, notifying the VP Engineering | **Out of scope for AI action** | SK-ENG-002 defines this as a human escalation chain with named accountable roles and hard time limits. The AI's role is to prepare and route that notification correctly and fast, never to send it unsupervised |
 
 That last row matters as much as the tier assignments themselves. Nothing in this build gives a model or agent the ability to trigger an unplanned engine removal or ground an aircraft. That accountability stays exactly where SK-ENG-002 already puts it — with named human roles on defined clocks.
@@ -86,9 +89,12 @@ The multi-agent orchestration pattern from Part 3 — an orchestrator sequencing
 | Backlog item | Delivered by |
 |---|---|
 | Amazon Bedrock | Part 3 — model access, tiered selection, Guardrails configuration |
+
 | Bedrock Knowledge Base | Part 1's data lake as the source, Part 3's KB architecture, this post's dual structured/unstructured grounding |
+
 | AI chat bot | This post — Tier 1, scoped, hands off anything outside its tier |
-| AgentCore | Part 2's governance model, Part 3's build-out, this post's maintenance advisory and disruption/crew/welfare agents |
+
+| Amazon Bedrock AgentCore | Part 2's governance model, Part 3's build-out, this post's maintenance advisory and disruption/crew/welfare agents |
 
 Each post in this series did one piece of work that made the next one possible: Part 1 gave the AI something real and governed to be grounded in. Part 2 decided, before any of it was built, what each use case was allowed to do and who stays accountable. Part 3 turned that decision into actual AWS configuration. This post is where it stops being architecture and starts being a feature a duty engineer or a shift manager would actually use.
 
