@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "amach-airport-demo-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/brianmadden/Documents/GitHub/Amach/amach-airport-demo/frontend", "run", "dev", "--", "--host", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}
